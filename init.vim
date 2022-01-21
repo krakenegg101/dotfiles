@@ -1,47 +1,38 @@
-" Plugins {{{
-call plug#begin('~/local/share/nvim/plugged')
-" Colorschemes
-Plug 'adryd325/vim-adryd-monokai'
-Plug 'overcache/NeoSolarized'
-Plug 'morhetz/gruvbox'
-Plug 'dracula/vim'
-Plug 'tomasiser/vim-code-dark'
-Plug 'jacoborus/tender.vim'
-" Lightline status bar
-Plug 'itchyny/lightline.vim'
-" Prettier format
-Plug 'prettier/vim-prettier', {'do': 'yarn install' } 
-" Autocompletion and Intellisense
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" File tree
-Plug 'preservim/nerdtree'
-" Autopairs
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+
+call plug#begin("~/vimfiles/autoload/plugged")
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'SidOfc/mkdx'
 Plug 'jiangmiao/auto-pairs'
-" Autoformat code
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tomasr/molokai'
 call plug#end()
-" }}}
 
-" General {{{
+let g:mkdx#settings     = { 'highlight': { 'enable': 1 },
+                        \ 'enter': { 'shift': 1 },
+                        \ 'links': { 'external': { 'enable': 1 } },
+                        \ 'toc': { 'text': 'Table of Contents', 'update_on_write': 1 },
+                        \ 'fold': { 'enable': 1 } }
+let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
+                                       " plugin which unfortunately interferes with mkdx list indentation.
 
-" Syntax Highlighting
 syntax on
+set conceallevel=2
+set textwidth=0
 set exrc
 set clipboard=unnamed
-set foldmethod=marker
-set foldlevel=0
-set modelines=1
 " Block cursor
-" set guicursor=
-" Line numbers, and in normal mode has relative numbers
+set guicursor=
+set ai
+set si
+" Line Numbers
 set nu
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * set rnu
-    autocmd BufLeave,FocusLost,InsertEnter * set nornu
-augroup ENDf mode() == "i"
-" Some load thingy
-" set hidden
 " Fixes weird backspace not working in insert
 set backspace=2
 " No backup files
@@ -49,73 +40,74 @@ set noswapfile
 " No backup files
 set nobackup
 set nowritebackup
-" for lightline
-set laststatus=2
-" hides mode text on bottom
-set noshowmode
 " Replace tabs with space
 set expandtab
 " No highlighted words in search
 set nohlsearch
-" Scrolls 4 lines before
+" Scrolls 2 lines before
 set scrolloff=4
 " No text wrap
 set nowrap
 " Searches while typing
 set incsearch
-" Column on side
-set signcolumn=yes
 " No error bells
 set belloff=all
 " Tab length
-set tabstop=2 softtabstop=2 shiftwidth=2
-" Better display for messages
-set cmdheight=2
-" Disables complete preview
-set completeopt-=preview
- 
-source $HOME/.config/nvim/plug-config/coc.vim
-" }}}
+set tabstop=8 shiftwidth=2 softtabstop=2
+set smarttab
+set go-=L
+set go-=m
+set go-=M
+set go-=l
+set go-=r
+set go=c
+set noshowmode
 
-" Keybinds {{{
-
-" Compile and Run Code
-autocmd FileType javascript nnoremap <buffer> <C-c> :w <bar> :terminal node "%" <CR>
-autocmd FileType python nnoremap <buffer> <C-c> :w <bar> :terminal python3 "%" <CR>
-autocmd FileType java  nnoremap <buffer> <C-c> :w <bar> :terminal javac "%"<CR>
-autocmd FileType cpp nnoremap <buffer> <C-c> :w <bar> :terminal g++ "%" -o "%:t:r" <CR>
-autocmd FileType java  nnoremap <C-x> :terminal java -cp "%:p:h" "%:t:r" <CR>
-autocmd FileType cpp nnoremap <C-x> :terminal ./"%:t:r" <CR>
- 
-" NERDTree keys
+autocmd filetype python nnoremap <F5> :w <bar> :!python % <CR>
 nnoremap <C-s> :w <CR>
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
- 
+
+autocmd BufNewFile *.cpp 0r ~\vimfiles\templates\template.cpp
+
 " no more arrow keys
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
-" }}}
 
-" Colors {{{
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" no folds
+let g:vim_markdown_folding_disabled = 1
+" shrink toc if possible
+let g:vim_markdown_toc_autofit = 1
+" fancy syntax concealment
+autocmd FileType markdown set conceallevel=2
+" but not for code blocks
+let g:vim_markdown_conceal_code_blocks = 0
+" yaml frontmatter
+let g:vim_markdown_frontmatter = 1
+" open Toc
+autocmd Filetype markdown nnoremap <silent> <localleader>j :Toch<cr>
+" select from TOC and quit
+autocmd FileType qf nnoremap <Space> <cr>:only<cr>
+
+function Check()
+  let l:line=getline('.')
+  let l:curs=winsaveview()
+  if l:line=~?'\s*-\s*\[\s*\].*'
+      s/\[\s*\]/[.]/
+  elseif l:line=~?'\s*-\s*\[\.\].*'
+      s/\[.\]/[x]/
+  elseif l:line=~?'\s*-\s*\[x\].*'
+      s/\[x\]/[ ]/
+  endif
+  call winrestview(l:curs)
+endfunction
+
+autocmd FileType markdown nnoremap <silent> - :call Check()<CR>
+
 set termguicolors
-set winblend=0
-set wildoptions=pum
-set pumblend=5
-colorscheme NeoSolarized
-let g:neosolarized_termtrans=1
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ }
-if !has("gui_running")
-    set t_Co=256
-endif
-" highlight Normal guibg=none
-" highlight NonText guibg=none
-" }}}
-
-" vim:foldmethod=marker:foldlevel=0
+colorscheme molokai
