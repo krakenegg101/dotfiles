@@ -1,0 +1,4 @@
+pane	0	0	1	:*	0	archlinux	:/home/munta/Projects/Automation	0	nvim	:nvim autorepo.sh
+pane	0	0	1	:*	1	archlinux	:/home/munta/Projects/Automation/test	1	bash	:/bin/bash ./autorepo.sh
+window	0	0	:bash	1	:*	9994,136x39,0,0{68x39,0,0,0,67x39,69,0,2}	:
+state	0	

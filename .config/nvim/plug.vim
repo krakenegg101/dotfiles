@@ -13,22 +13,20 @@ call plug#begin(stdpath('data') . '/plugged')
   Plug 'tomasiser/vim-code-dark'
   Plug 'morhetz/gruvbox'
   Plug 'dracula/vim', { 'as': 'dracula' }
+  Plug 'nathanaelkane/vim-indent-guides'
   " Icons
   Plug 'ryanoasis/vim-devicons'
   Plug 'kyazdani42/nvim-web-devicons'
-  Plug 'romgrk/barbar.nvim'
+  "Plug 'romgrk/barbar.nvim'
   " Multi Cursor
   Plug 'timlentse/vim-multiple-cursors'
   Plug 'tpope/vim-vinegar'
   " Markdown
   Plug 'ixru/nvim-markdown'
-  Plug 'iamcco/markdown-preview.nvim'
   " LSP and theming
   if has('nvim')
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/nvim-compe'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   endif
-  " Focus Mode 
-  Plug 'Pocco81/TrueZen.nvim'
 call plug#end()

@@ -1,0 +1,5 @@
+pane	0	0	1	:*	0	archlinux	:/home/munta/Projects/pytetris	1	zsh	:
+pane	1	0	1	:*	0	archlinux	:/home/munta/Downloads/Munta's\ Connect 4-20220715T204349Z-001/Munta_s Connect 4	1	zsh	:bash /usr/bin/neofetch
+window	0	0	:zsh	1	:*	c37d,125x36,0,0,0	:
+window	1	0	:zsh	1	:*	c7be,135x37,0,0,1	:
+state	1	

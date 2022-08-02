@@ -1,0 +1,10 @@
+pane	0	0	1	:*	0	archlinux	:/home/munta/Projects/pytetris	1	nvim	:nvim main.py
+pane	0	0	1	:*	1	archlinux	:/home/munta/Projects/pytetris	0	nvim	:nvim tetrominoes.py
+pane	1	0	0	:-	0	archlinux	:/home/munta/Projects/pytetris	1	nvim	:nvim main.py
+pane	1	0	0	:-	1	archlinux	:/home/munta/Projects/pytetris	0	nvim	:nvim tetrominoes.py
+pane	1	1	1	:*	0	archlinux	:/home/munta/Projects/pytetris	1	nvim	:nvim board.py
+pane	1	1	1	:*	1	archlinux	:/home/munta/Projects/pytetris	0	nvim	:nvim test.py
+window	0	0	:nvim	1	:*	24a8,236x64,0,0{118x64,0,0,1,117x64,119,0,2}	:
+window	1	0	:nvim	0	:-	2c65,177x49,0,0{88x49,0,0,3,88x49,89,0,4}	:
+window	1	1	:nvim	1	:*	2c6e,177x49,0,0{88x49,0,0,5,88x49,89,0,6}	:
+state	1	

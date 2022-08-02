@@ -1,0 +1,6 @@
+pane	0	0	1	:*	0	archlinux	:/home/munta/Projects/pytetris	1	nvim	:nvim main.py
+pane	0	0	1	:*	1	archlinux	:/home/munta/Projects/pytetris	0	zsh	:
+pane	1	0	1	:*	0	archlinux	:/home/munta/Projects/pytetris	1	zsh	:bash /usr/bin/neofetch
+window	0	0	:nvim	1	:*	6007,125x36,0,0{80x36,0,0,0,44x36,81,0,2}	:
+window	1	0	:zsh	1	:*	c7c0,135x37,0,0,3	:
+state	1	

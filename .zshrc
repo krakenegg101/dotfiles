@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -70,7 +70,12 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+
+plugins=(
+    git
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,9 +100,23 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias autorepo="/etc/autorepo.sh"
 alias tmux="TERM=screen-256color-bce tmux"
+alias rf="rm -rf"
+alias vim="nvim"
+alias browser="chromium -incognito"
+alias editi3="vim ~/.config/i3/config"
+
+alias mux='pgrep -vx tmux > /dev/null && \
+        tmux new -d -s delete-me && \
+        tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh && \
+        tmux kill-session -t delete-me && \
+        tmux attach || tmux attach'
+
+xmodmap ~/.Xmodmap
+xrdb -merge ~/.Xresources
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

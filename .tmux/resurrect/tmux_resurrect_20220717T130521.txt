@@ -1,0 +1,4 @@
+pane	0	0	1	:*	0	archlinux	:/home/munta/Projects/pytetris	1	nvim	:nvim main.py
+pane	0	0	1	:*	1	archlinux	:/home/munta/Projects/pytetris	0	nvim	:nvim tetrominoes.py
+window	0	0	:nvim	1	:*	6d8b,135x37,0,0{67x37,0,0,0,67x37,68,0,1}	:
+state	0	

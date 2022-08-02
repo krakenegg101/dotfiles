@@ -1,0 +1,4 @@
+pane	0	0	1	:*	0	archlinux	:/home/munta/Projects	1	python	:/usr/bin/python -O /usr/bin/ranger
+pane	0	0	1	:*	1	archlinux	:/home/munta	0	nvim	:nvim
+window	0	0	:python	1	:*	45f4,226x56,0,0{68x56,0,0,0,157x56,69,0,1}	:
+state	0	
